@@ -20,13 +20,19 @@ public class EmployeeController {
 	@GetMapping("/new")
 	public String displayEmployeeForm(Model model) {
 		model.addAttribute("employee", new Employee());
-		return "new-employee";
+		return "employees/new-employee";
 	}
 	
 	@PostMapping("/save")
-	public String createEmployee(Employee employee, Model model) {
+	public String createEmployee(Employee employee) {
 		empRepo.save(employee);
 		return "redirect:/employees/new";
+	}
+	
+	@GetMapping("/show")
+	public String showEmployees(Model model) {
+		model.addAttribute("employees", empRepo.findAll());
+		return "employees/show-employees";
 	}
 	
 }

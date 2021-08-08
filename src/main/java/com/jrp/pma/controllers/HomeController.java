@@ -23,10 +23,8 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String displayHome(Model model) {
-		List<Project> projects = proRepo.findAll();
-		model.addAttribute("projects", projects);
-		List<Employee> employees = empRepo.findAll();
-		model.addAttribute("employees", employees);
-		return "home";
+		model.addAttribute("projects", proRepo.findAll());
+		model.addAttribute("employees", empRepo.findAll());
+		return "main/home";
 	}
 }
